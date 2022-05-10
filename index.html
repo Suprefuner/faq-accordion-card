@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | FAQ Accordion Card</title>
+    <script src="./main.js" defer></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+
+      :root {
+        --bp-mobile: 23.5em;
+        --bp-desktop: 90em;
+
+        --color-dark-blue: hsl(238, 29%, 16%);
+        --color-red: hsl(14, 88%, 65%);
+        --color-violet: hsl(273, 75%, 66%);
+        --color-blue: hsl(240, 73%, 65%);
+
+        --font-display: "Kumbh Sans", sans-serif;
+
+        --gradient: to bottom, var(--color-violet), var(--color-blue);
+
+        --border-radius-md: 20px;
+      }
+
+      html {
+        font-size: 62.5%;
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: inherit;
+        list-style: none;
+        vertical-align: middle;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 20rem 3rem 10rem;
+
+        font-size: 1.6rem;
+        font-family: var(--font-display);
+
+        background-image: linear-gradient(var(--gradient));
+      }
+
+      .container {
+        width: 100%;
+        max-width: 28em;
+
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        padding: 15rem 4rem 8rem;
+
+        background-color: #fff;
+        background-image: url(./images/bg-pattern-mobile.svg);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 75%;
+
+        border-radius: var(--border-radius-md);
+
+        position: relative;
+
+        box-shadow: 0 5rem 10rem -2rem rgb(66, 14, 126);
+      }
+
+      .container__img {
+        width: 75%;
+
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -60%);
+      }
+
+      .container__heading {
+        font-size: 4rem;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .question__item-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 1rem;
+      }
+
+      .question__item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 2rem;
+      }
+
+      .question__item:not(:first-child) {
+        padding-top: 2rem;
+      }
+
+      .question {
+        font-weight: 400;
+
+        cursor: pointer;
+      }
+
+      .question:hover {
+        color: var(--color-red);
+      }
+
+      .active {
+        font-weight: 700;
+      }
+
+      .answer {
+        width: 90%;
+        /* bad approach since I have to calc the max-height myself */
+        max-height: 60px;
+
+        color: #888;
+        font-size: 1.4rem;
+        line-height: 1.5;
+
+        opacity: 1;
+
+        transition: 0.5s;
+      }
+
+      .icon {
+        width: 1.3rem;
+
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      .hidden {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+      }
+
+      /* ------------------------------RWD------------------------------ */
+
+      @media only screen and (min-width: 65em) {
+        .container {
+          max-width: 1200px;
+          align-items: end;
+          justify-content: center;
+          padding: 4rem;
+
+          background-image: url(./images/illustration-woman-online-desktop.svg),
+            url(./images/bg-pattern-desktop.svg);
+          background-size: 55rem, 100rem;
+          background-position: left -9rem top 45%, left -54rem top -20rem;
+
+          position: relative;
+        }
+
+        .container__img {
+          top: 50%;
+          left: -10%;
+          transform: translate(0, -25%);
+        }
+
+        .faq {
+          width: 50%;
+        }
+
+        .container__heading {
+          text-align: left;
+        }
+
+        .answer {
+          max-height: 40px;
+        }
+
+        .hidden {
+          max-height: 0;
+        }
+      }
+
+      /* ------------------------------RWD------------------------------ */
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <picture class="container__img">
+        <source
+          srcset="./images/illustration-woman-online-mobile.svg"
+          media="(max-width: 65em)"
+        />
+        <source
+          srcset="./images/illustration-box-desktop.svg"
+          media="(min-width: 65em)"
+        />
+        <img src="./images/illustration-woman-online-mobile.svg" />
+      </picture>
+      <section class="faq">
+        <h1 class="container__heading heading-1">FAQ</h1>
+        <ul class="question__list">
+          <li class="question__item">
+            <div class="question__item-header">
+              <h3 class="question">How many team members can I invite?</h3>
+              <img
+                src="./images/icon-arrow-down.svg"
+                alt=""
+                class="icon-arrow icon"
+              />
+            </div>
+            <p class="answer hidden">
+              You can invite up to 2 additional users on the Free plan. There is
+              no limit on team members for the Premium plan.
+            </p>
+          </li>
+          <li class="question__item">
+            <div class="question__item-header">
+              <h3 class="question">What is the maximum file upload size?</h3>
+              <img
+                src="./images/icon-arrow-down.svg"
+                alt=""
+                class="icon-arrow icon"
+              />
+            </div>
+            <p class="answer hidden">
+              No more than 2GB. All files in your account must fit your allotted
+              storage space.
+            </p>
+          </li>
+          <li class="question__item">
+            <div class="question__item-header">
+              <h3 class="question">How do I reset my password?</h3>
+              <img
+                src="./images/icon-arrow-down.svg"
+                alt=""
+                class="icon-arrow icon"
+              />
+            </div>
+            <p class="answer hidden">
+              Click “Forgot password” from the login page or “Change password”
+              from your profile page. A reset link will be emailed to you.
+            </p>
+          </li>
+          <li class="question__item">
+            <div class="question__item-header">
+              <h3 class="question">Can I cancel my subscription?</h3>
+              <img
+                src="./images/icon-arrow-down.svg"
+                alt=""
+                class="icon-arrow icon"
+              />
+            </div>
+            <p class="answer hidden">
+              Yes! Send us a message and we’ll process your request no questions
+              asked.
+            </p>
+          </li>
+          <li class="question__item">
+            <div class="question__item-header">
+              <h3 class="question">Do you provide additional support?</h3>
+              <img
+                src="./images/icon-arrow-down.svg"
+                alt=""
+                class="icon-arrow icon"
+              />
+            </div>
+            <p class="answer hidden">
+              Chat and email support is available 24/7. Phone lines are open
+              during normal business hours.
+            </p>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
